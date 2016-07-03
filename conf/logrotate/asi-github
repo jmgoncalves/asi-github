@@ -1,0 +1,6 @@
+/home/jmgonc/node/asi-github/log/asi-github.log {
+	rotate 5
+	size 100k
+	copytruncate
+	missingok
+}

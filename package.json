@@ -1,0 +1,20 @@
+{
+  "name": "asi-github",
+  "version": "1.0.0",
+  "keywords": [
+    "api",
+    "github",
+    "asi"
+  ],
+  "homepage": "http://jmgoncalv.es",
+  "description": "Example API implementation for ASI using Node. Exposes an HTTP API that returns the five largest repositories of a used, by doing a subsequent call to the GitHub API.",
+  "author": "João Miguel Gonçalves <jmgonc@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmgoncalves/asi-github"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}

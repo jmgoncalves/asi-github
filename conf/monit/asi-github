@@ -1,0 +1,10 @@
+#!monit
+set logfile /home/jmgonc/node/asi-github/log/asi-github.monit.log
+
+check process nodejs-test-server with pidfile "/home/jmgonc/node/asi-github/pid/asi-github.pid"
+    start program = "/sbin/start asi-github"
+    stop program  = "/sbin/stop asi-github"
+    if failed port 1337 protocol HTTP
+        request /
+        with timeout 10 seconds
+        then restart

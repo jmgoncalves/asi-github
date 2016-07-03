@@ -124,9 +124,15 @@ var main = function (req, res) {
 		var requestOptions = buildRequestOptions('https://api.github.com/users/'+githubUsername+'/repos');
 		getFromSource(requestOptions, function(responseData) {
 			var repos = JSON.parse(responseData);
-			var topRepos = top5(repos);
 			res.writeHead(200, {'Content-Type': 'application/json'});
-			res.end(JSON.stringify(topRepos));
+
+			if (repos.constructor === Array) {
+				// got array from GitHub - handle normal case
+				res.end(JSON.stringify(top5(repos)));
+			} else {
+				// forward the object GitHub returned
+				res.end(JSON.stringify(repos));
+			}
 		});
 	} else {
 		res.writeHead(200);

@@ -20,6 +20,7 @@ var url = require('url');
 
 var PROCESS_NAME = 'asi-github';
 var DEFAULT_PORT = 1337;
+var USAGE_MESSAGE = 'Usage: http://node.jmgoncalv.es/<username> (e.g. http://node.jmgoncalv.es/jmgoncalves)';
 
 /**
  *  HTTP HELPER FUNCTIONS
@@ -118,13 +119,19 @@ var main = function (req, res) {
 	console.log('['+timestampsDate.toISOString()+'] Received '+req.url+' request from '+req.connection.remoteAddress);
 
 	var githubUsername = url.parse(req.url).pathname.slice(1,req.url.length);
-	var requestOptions = buildRequestOptions('https://api.github.com/users/'+githubUsername+'/repos');
-	getFromSource(requestOptions, function(responseData) {
-		var repos = JSON.parse(responseData);
-		var topRepos = top5(repos);
-		res.writeHead(200, {'Content-Type': 'application/json'});
-		res.end(JSON.stringify(topRepos));
-	});
+
+	if (githubUsername.length>0) {
+		var requestOptions = buildRequestOptions('https://api.github.com/users/'+githubUsername+'/repos');
+		getFromSource(requestOptions, function(responseData) {
+			var repos = JSON.parse(responseData);
+			var topRepos = top5(repos);
+			res.writeHead(200, {'Content-Type': 'application/json'});
+			res.end(JSON.stringify(topRepos));
+		});
+	} else {
+		res.writeHead(200);
+		res.end(USAGE_MESSAGE);
+	}
 };
 
 /** Application Init

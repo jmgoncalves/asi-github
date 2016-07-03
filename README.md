@@ -1,6 +1,6 @@
 Example API implementation for ASI using Node. Exposes an HTTP API that returns the five largest repositories of a used, by doing a subsequent call to the GitHub API.
 
-Usage: http://node.jmgoncalv.es/<username> (e.g. http://node.jmgoncalv.es/jmgoncalves)
+Usage: http://node.jmgoncalv.es/&lt;username&gt; (e.g. http://node.jmgoncalv.es/jmgoncalves)
 
 Deployment
 ----------
